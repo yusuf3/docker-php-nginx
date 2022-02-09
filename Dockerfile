@@ -6,37 +6,37 @@ LABEL Description="Lightweight container with Nginx 1.20 & PHP 8.0 based on Alpi
 WORKDIR /var/www/html
 
 # Install packages and remove default server definition
-RUN apk add --no-cache \
+RUN apk update && apk add --no-cache \
   curl \
   nginx \
-  php8 \
-  php8-ctype \
-  php8-curl \
-  php8-dom \
-  php8-fpm \
-  php8-gd \
-  php8-intl \
-  php8-json \
-  php8-mbstring \
-  php8-mysqli \
-  php8-opcache \
-  php8-openssl \
-  php8-phar \
-  php8-session \
-  php8-xml \
-  php8-xmlreader \
-  php8-zlib \
+  php7 \
+  php7-ctype \
+  php7-curl \
+  php7-dom \
+  php7-fpm \
+  php7-gd \
+  php7-intl \
+  php7-json \
+  php7-mbstring \
+  php7-mysqli \
+  php7-opcache \
+  php7-openssl \
+  php7-phar \
+  php7-session \
+  php7-xml \
+  php7-xmlreader \
+  php7-zlib \
   supervisor
 
 # Create symlink so programs depending on `php` still function
-RUN ln -s /usr/bin/php8 /usr/bin/php
+# RUN ln -s /usr/bin/php7 /usr/bin/php
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php8/php-fpm.d/www.conf
-COPY config/php.ini /etc/php8/conf.d/custom.ini
+COPY config/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
+COPY config/php.ini /etc/php7/conf.d/custom.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
