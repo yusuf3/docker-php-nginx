@@ -28,14 +28,16 @@ COPY config/php.ini /etc/php7/conf.d/custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Add application
+COPY --chown=nobody --from=composer /app /deployment
+
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /deployment /run /var/lib/nginx /var/log/nginx
+RUN && mkdir storage/framework/laravel-excel \
+    && mkdir storage/framework/views \
+    chown -R nobody.nobody /deployment /run /var/lib/nginx /var/log/nginx
 
 # Switch to use a non-root user from here on
 USER nobody
-
-# Add application
-COPY --chown=nobody --from=composer /app /deployment
 
 # Expose the port nginx is reachable on
 EXPOSE 80
