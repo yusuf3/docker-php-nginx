@@ -1,4 +1,4 @@
-FROM alpine:${ALPINE_VERSION}
+FROM alpine:3.15
 
 # Setup document root
 WORKDIR /deployment
