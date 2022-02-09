@@ -1,4 +1,3 @@
-ARG ALPINE_VERSION=3.15
 FROM alpine:${ALPINE_VERSION}
 
 # Setup document root
@@ -30,7 +29,6 @@ RUN apk update && apk add --no-cache \
   php7-sqlite3 \
   php7-bz2 php7-mongodb php7-tidy php7-yaml \
   php7-pgsql \
-  php7-mysql \
   php7-common \
   php7-soap \
   php7-cli \
