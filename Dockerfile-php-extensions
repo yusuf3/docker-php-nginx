@@ -26,20 +26,20 @@ RUN apk update && apk add --no-cache \
   php7-xmlreader \
   php7-zlib \
   php7-memcached \
-  php7.4-redis \
-  php7.4-sqlite3 \
-  php7.4-bz2 php7.4-mongodb php7.4-tidy php7.4-yaml \
-  php7.4-pgsql \
-  php7.4-mysql \
-  php7.4-common \
-  php7.4-soap \
-  php7.4-cli \
-  php7.4-xsl \
-  php7.4-imap \
-  php7.4-ldap \
-  php7.4-dev \
-  php7.4-bcmath \
-  php7.4-zip \
+  php7-redis \
+  php7-sqlite3 \
+  php7-bz2 php7-mongodb php7-tidy php7-yaml \
+  php7-pgsql \
+  php7-mysql \
+  php7-common \
+  php7-soap \
+  php7-cli \
+  php7-xsl \
+  php7-imap \
+  php7-ldap \
+  php7-dev \
+  php7-bcmath \
+  php7-zip \
   supervisor
 
 # Configure nginx
