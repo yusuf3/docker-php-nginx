@@ -1,3 +1,6 @@
+### Notes
+# image size around 576 MB
+#   php7-pecl-gmagick --> PHP Warning:  Cannot load module 'imagick' because conflicting module 'gmagick' is already loaded in Unknown on line 0
 FROM alpine:3.15
 
 # Install packages and remove default server definition
@@ -27,7 +30,6 @@ RUN apk update && apk add --no-cache \
   php7 \
   php7-fpm \
   php7-pecl-mailparse \
-  php7-pecl-gmagick \
   php7-pecl-imagick \
   php7-mysqlnd \
   php7-enchant \
@@ -110,4 +112,3 @@ RUN apk update && apk add --no-cache \
   php7-pecl-xhprof-assets \
   php7-simplexml \
   php7-xmlwriter
-  
