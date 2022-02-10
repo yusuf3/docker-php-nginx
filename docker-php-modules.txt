@@ -1,0 +1,46 @@
+[PHP Modules]
+bcmath
+bz2
+Core
+ctype
+curl
+date
+dom
+filter
+gd
+hash
+igbinary
+imap
+intl
+json
+ldap
+libxml
+mbstring
+memcached
+mongodb
+mysqli
+mysqlnd
+openssl
+pcre
+pgsql
+Phar
+phpdbg_webhelper
+readline
+redis
+Reflection
+session
+soap
+SPL
+sqlite3
+standard
+tidy
+xml
+xmlreader
+xsl
+yaml
+Zend OPcache
+zip
+zlib
+
+[Zend Modules]
+Zend OPcache

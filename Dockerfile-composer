@@ -32,9 +32,9 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY --chown=nobody --from=composer /app /deployment
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN && mkdir storage/framework/laravel-excel \
+RUN mkdir storage/framework/laravel-excel \
     && mkdir storage/framework/views \
-    chown -R nobody.nobody /deployment /run /var/lib/nginx /var/log/nginx
+    && chown -R nobody.nobody /deployment /run /var/lib/nginx /var/log/nginx
 
 # Switch to use a non-root user from here on
 USER nobody
