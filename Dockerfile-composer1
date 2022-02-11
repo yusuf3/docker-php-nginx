@@ -1,21 +1,23 @@
 # Notes
-# composer nya ga di dalem image extensions
-FROM composer AS composer
+# composer nya di dalem image extensions
+
+FROM muhamadyusuf/php:7.4-alpine as composer
+
+# composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # copying the source directory and install the dependencies with composer
 COPY . /app
 
 # run composer install to install the dependencies
-RUN composer install \
-  --ignore-platform-reqs \
-  --no-scripts \
+RUN composer install -o \
   --optimize-autoloader \
   --no-interaction \
   --no-progress
 
 # continue stage build with the desired image and copy the source including the
 # dependencies downloaded by composer
-FROM php-my:ext3
+FROM muhamadyusuf/php:7.4-alpine
 
 # Setup document root
 WORKDIR /deployment
