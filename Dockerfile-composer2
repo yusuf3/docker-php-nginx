@@ -1,25 +1,6 @@
 # Notes
-# composer nya di dalem image extensions, tapi ga ikut di final build
-# image size 668MB
+# composer nya ada di final build
 
-FROM muhamadyusuf/php:7.4-alpine as composer
-
-WORKDIR /app
-
-# composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# copying the source directory and install the dependencies with composer
-COPY . /app
-
-# run composer install to install the dependencies
-RUN composer install -o \
-  --optimize-autoloader \
-  --no-interaction \
-  --no-progress
-
-# continue stage build with the desired image and copy the source including the
-# dependencies downloaded by composer
 FROM muhamadyusuf/php:7.4-alpine
 
 # Setup document root
@@ -35,8 +16,17 @@ COPY config/php.ini /etc/php7/conf.d/custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
 # Add application
-COPY --chown=nobody --from=composer /app /deployment
+COPY --chown=nobody . /deployment
+
+# run composer install to install the dependencies
+RUN composer install -o \
+  --optimize-autoloader \
+  --no-interaction \
+  --no-progress
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /deployment /run /var/lib/nginx /var/log/nginx
